@@ -3,3 +3,10 @@
 ################################################################################
 
 /AntiApi/AntiApi.UnitTest/obj/Debug
+/AntiApi/AntiApi.UnitTest/bin/Debug
+/AntiApi/.vs/AntiApi/v16
+/AntiApi/.vs/AntiApi/config
+/AntiApi/.vs/AntiApi
+/AntiApi/AntiApi.WebAPI/bin
+/AntiApi/AntiApi.WebAPI/obj/Debug
+/AntiApi/packages
