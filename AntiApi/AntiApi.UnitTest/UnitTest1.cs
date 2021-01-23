@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 using Anti.Api.Model;
+using AntiApi.UnitTest.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 namespace AntiApi.UnitTest
 {
@@ -15,16 +17,22 @@ namespace AntiApi.UnitTest
         {
             //把 AntiApi.WebAPI，部署在iis上，端口号是8070，即可测试调用
             //如果要修改配置Labels_Secret，需要同步修改接口TimingActionFilter.cs的secret
-            var result = SendAPI("1", "http://localhost:8070", "/api/Data/TestAPI");
-        }
 
+            StoreRequest storeRequest = new StoreRequest() { StoreName = "店铺1", UserNo = "1001" };
+
+            var postData = JsonConvert.SerializeObject(storeRequest);
+
+            var result = SendAPI("http://localhost:8070", "/api/Data/TestAPI", postData);
+        }
 
         /// <summary>
         /// 发送请求
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="url"></param>
         /// <param name="api"></param>
-        private static string SendAPI(string data, string url, string api)
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private static string SendAPI(string url, string api, string data)
         {
             string Appkey = GetAppSettingsValue("Labels_Appkey");
             string Secret = GetAppSettingsValue("Labels_Secret");
